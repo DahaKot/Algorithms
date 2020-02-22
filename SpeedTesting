@@ -1,0 +1,23 @@
+#!/bin/bash
+
+TIMEFORMAT=%5R
+
+rm smart_times.txt
+rm brute_times.txt
+rm linear_times.txt
+
+for ((n = 1; n <= 500000; n+=1000)); do
+    MAXCOUNT=$n
+    count=0
+
+    while [ "$count" -le $MAXCOUNT ]; do
+        number[$count]=$(($RANDOM%101-50))
+        let "count += 1"
+    done
+
+    { time ./smart $n ${number[*]} ; } 2>> smart_times.txt
+
+    { time ./brute $n ${number[*]} ; } 2>> brute_times.txt
+
+    { time ./linear $n ${number[*]} ; } 2>> linear_times.txt
+done
