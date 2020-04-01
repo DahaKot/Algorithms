@@ -20,7 +20,9 @@ void PrintVector(const std::vector<int>& v) {
     std::cout << std::endl;
 }
 
-Subarray FindMaximumSubarrayBrute(const std::vector<int>& array, int begin, int end) {
+Subarray FindMaximumSubarrayBrute(const std::vector<int>& array, 
+                                    int begin, 
+                                    int end) {
     int n = end  - begin + 1;
 
     int max_sum = -1000;
@@ -54,7 +56,10 @@ Subarray FindMaximumSubarrayBrute(const std::vector<int>& array, int begin, int 
     return {low_index, high_index, max_sum};
 }
 
-Subarray FindMaxMiddleArray(const std::vector<int>& array, int begin, int end, int delimeter) {
+Subarray FindMaxMiddleArray(const std::vector<int>& array, 
+                            int begin, 
+                            int end, 
+                            int delimeter) {
     int max_left_sum = -1000;
     int max_right_sum = -1000;
 

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TIMEFORMAT=%5R
+
+rm mm_smart_times.txt
+rm mm_brute_times.txt
+
+for ((n = 1; n <= 64; n *= 2)); do
+    MAXCOUNT=$((2 * $n * $n))
+    count=0
+
+    while [ "$count" -le $MAXCOUNT ]; do
+        number[$count]=$(($RANDOM%101-50))
+        let "count += 1"
+    done
+
+    { time ./mm_smart $n ${number[*]} ; } 2>> mm_smart_times.txt
+
+    { time ./mm_brute $n ${number[*]} ; } 2>> mm_brute_times.txt
+
+done
